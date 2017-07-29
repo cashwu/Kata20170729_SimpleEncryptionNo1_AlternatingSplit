@@ -21,21 +21,27 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
         }
 
         [TestMethod]
-        public void This_is_and_1_should_return_hsTi()
+        public void This_is_a_test_and_1_should_return_hsi_etTi_sats()
         {
-            AssertEncryptShouldBe("This is", 1, "hsiTi s");
+            AssertEncryptShouldBe("This is a test!", 1, "hsi  etTi sats!");
         }
 
         [TestMethod]
-        public void This_and_2_should_return_sihT()
+        public void This_is_a_test_and_2_should_return_s_eT_ashi_tist()
         {
-            AssertEncryptShouldBe("This", 2, "sihT");
+            AssertEncryptShouldBe("This is a test!", 2, "s eT ashi tist!");
         }
 
         [TestMethod]
-        public void This_and_3_should_return_iTsh()
+        public void This_is_a_test_and_2_should_return_Tah_itse_sits()
         {
-            AssertEncryptShouldBe("This", 3, "iTsh");
+            AssertEncryptShouldBe("This is a test!", 3, " Tah itse sits!");
+        }
+
+        [TestMethod]
+        public void This_is_a_test_and_2_should_return_This_is_a_test()
+        {
+            AssertEncryptShouldBe("This is a test!", 4, "This is a test!");
         }
 
         private static void AssertEncryptShouldBe(string text, int time, string expected)
