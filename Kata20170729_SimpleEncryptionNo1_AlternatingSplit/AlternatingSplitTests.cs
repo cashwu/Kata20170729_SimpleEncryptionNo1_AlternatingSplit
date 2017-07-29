@@ -26,6 +26,12 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
             AssertEncryptShouldBe("This is", 1, "hsiTi s");
         }
 
+        [TestMethod]
+        public void This_and_2_should_return_sihT()
+        {
+            AssertEncryptShouldBe("This", 2, "sihT");
+        }
+
         private static void AssertEncryptShouldBe(string text, int time, string expected)
         {
             var kata = new Kata();
@@ -43,10 +49,19 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
                 return text;
             }
 
-            var charArray = text.ToCharArray();
+            for (int i = 0; i < n; i++)
+            {
+                text = AlternatingString(text);
+            }
 
+            return text;
+        }
+
+        private static string AlternatingString(string text)
+        {
+            var charArray = text.ToCharArray();
             return string.Concat(charArray.Where((c, i) => i % 2 != 0))
-                + string.Concat(charArray.Where((c, i) => i % 2 == 0));
+                   + string.Concat(charArray.Where((c, i) => i % 2 == 0));
         }
     }
 }
