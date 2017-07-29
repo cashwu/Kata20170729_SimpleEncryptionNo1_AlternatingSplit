@@ -1,4 +1,5 @@
 ﻿    using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -38,7 +39,8 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
 
             var charArray = text.ToCharArray();
 
-            return charArray[1].ToString() + charArray[3].ToString() + charArray[0].ToString() + charArray[2].ToString();
+            return string.Concat(charArray.Where((c, i) => i % 2 != 0))
+                + string.Concat(charArray.Where((c, i) => i % 2 == 0));
         }
     }
 }
