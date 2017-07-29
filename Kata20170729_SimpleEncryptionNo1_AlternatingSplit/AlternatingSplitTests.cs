@@ -1,8 +1,8 @@
-﻿    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
 {
@@ -63,6 +63,12 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
             AssertDecryptShouldBe("hsiTi s", 1, "This is");
         }
 
+        [TestMethod]
+        public void Ti_shs_and_2_time_Decrypt_should_return_This()
+        {
+            AssertDecryptShouldBe("sihT", 2, "This");
+        }
+
         private static void AssertDecryptShouldBe(string encryptedText, int n, string expected)
         {
             var kata = new Kata();
@@ -89,17 +95,10 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
 
             for (int i = 0; i < n; i++)
             {
-                text = AlternatingString(text);
+                text = AlternatingEncryptString(text);
             }
 
             return text;
-        }
-
-        private static string AlternatingString(string text)
-        {
-            var charArray = text.ToCharArray();
-            return string.Concat(charArray.Where((c, i) => i % 2 != 0))
-                   + string.Concat(charArray.Where((c, i) => i % 2 == 0));
         }
 
         public string Decrypt(string encryptedText, int n)
@@ -108,7 +107,24 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
             {
                 return encryptedText;
             }
-            //hsiTi s
+
+            for (int i = 0; i < n; i++)
+            {
+                encryptedText = AlternatingDecryptString(encryptedText);
+            }
+
+            return encryptedText;
+        }
+
+        private static string AlternatingEncryptString(string text)
+        {
+            var charArray = text.ToCharArray();
+            return string.Concat(charArray.Where((c, i) => i % 2 != 0))
+                   + string.Concat(charArray.Where((c, i) => i % 2 == 0));
+        }
+
+        private static string AlternatingDecryptString(string encryptedText)
+        {
             var len = encryptedText.Length / 2;
 
             var text1 = encryptedText.Substring(0, len);
