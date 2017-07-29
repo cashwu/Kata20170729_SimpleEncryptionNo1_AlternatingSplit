@@ -81,6 +81,12 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
             AssertEncryptShouldBe(null, 0, "exactly");
         }
 
+        [TestMethod]
+        public void null_Decrypt_should_return_exactly()
+        {
+            AssertDecryptShouldBe(null, 0, "exactly");
+        }
+
         private static void AssertDecryptShouldBe(string encryptedText, int n, string expected)
         {
             var kata = new Kata();
@@ -120,6 +126,11 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
 
         public string Decrypt(string encryptedText, int n)
         {
+            if (string.IsNullOrEmpty(encryptedText))
+            {
+                return "exactly";
+            }
+
             if (n <= 0)
             {
                 return encryptedText;
