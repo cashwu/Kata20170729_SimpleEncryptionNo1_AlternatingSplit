@@ -69,6 +69,12 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
             AssertDecryptShouldBe("sihT", 2, "This");
         }
 
+        [TestMethod]
+        public void hskt_svr_neetnTi_aai_eyitrsig_Decrypt_should_return_This_kata_is_very_interesting()
+        {
+            AssertDecryptShouldBe("hskt svr neetn!Ti aai eyitrsig", 1, "This kata is very interesting!");
+        }
+
         private static void AssertDecryptShouldBe(string encryptedText, int n, string expected)
         {
             var kata = new Kata();
