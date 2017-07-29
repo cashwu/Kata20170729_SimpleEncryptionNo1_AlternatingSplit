@@ -1,6 +1,7 @@
 ﻿    using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
@@ -56,6 +57,12 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
             AssertDecryptShouldBe("hsTi", 1, "This");
         }
 
+        [TestMethod]
+        public void Ti_shs_and_1_time_Decrypt_should_return_This_is()
+        {
+            AssertDecryptShouldBe("hsiTi s", 1, "This is");
+        }
+
         private static void AssertDecryptShouldBe(string encryptedText, int n, string expected)
         {
             var kata = new Kata();
@@ -101,8 +108,26 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
             {
                 return encryptedText;
             }
+            //hsiTi s
+            var len = encryptedText.Length / 2;
 
-            return AlternatingString(string.Concat(encryptedText.Reverse()));
+            var text1 = encryptedText.Substring(0, len);
+            var text2 = encryptedText.Substring(len, encryptedText.Length - len);
+
+            var sb = new StringBuilder();
+            for (int i = 0; i < Math.Max(text1.Length, text2.Length); i++)
+            {
+                if (i < text2.Length)
+                {
+                    sb.Append(text2[i]);
+                }
+                if (i < text1.Length)
+                {
+                    sb.Append(text1[i]);
+                }
+            }
+
+            return sb.ToString();
         }
     }
 }
