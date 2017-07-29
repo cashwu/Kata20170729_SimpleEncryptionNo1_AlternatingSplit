@@ -47,9 +47,14 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
         [TestMethod]
         public void hsTi_and_0_time_Decrypt_should_return_hsTi()
         {
+            AssertDecryptShouldBe("hsTi", 1, "hsTi");
+        }
+
+        private static void AssertDecryptShouldBe(string encryptedText, int n, string expected)
+        {
             var kata = new Kata();
-            var actual = kata.Decrypt("hsTi", 1);
-            Assert.AreEqual("hsTi", actual);
+            var actual = kata.Decrypt(encryptedText, n);
+            Assert.AreEqual(expected, actual);
         }
 
         private static void AssertEncryptShouldBe(string text, int time, string expected)
