@@ -32,6 +32,12 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
             AssertEncryptShouldBe("This", 2, "sihT");
         }
 
+        [TestMethod]
+        public void This_and_3_should_return_iTsh()
+        {
+            AssertEncryptShouldBe("This", 3, "iTsh");
+        }
+
         private static void AssertEncryptShouldBe(string text, int time, string expected)
         {
             var kata = new Kata();
