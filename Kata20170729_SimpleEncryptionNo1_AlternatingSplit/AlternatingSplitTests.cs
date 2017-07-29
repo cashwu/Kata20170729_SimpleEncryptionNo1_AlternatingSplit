@@ -47,7 +47,13 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
         [TestMethod]
         public void hsTi_and_0_time_Decrypt_should_return_hsTi()
         {
-            AssertDecryptShouldBe("hsTi", 1, "hsTi");
+            AssertDecryptShouldBe("hsTi", 0, "hsTi");
+        }
+
+        [TestMethod]
+        public void hsTi_and_1_time_Decrypt_should_return_This()
+        {
+            AssertDecryptShouldBe("hsTi", 1, "This");
         }
 
         private static void AssertDecryptShouldBe(string encryptedText, int n, string expected)
@@ -91,7 +97,12 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
 
         public string Decrypt(string encryptedText, int n)
         {
-            return encryptedText;
+            if (n <= 0)
+            {
+                return encryptedText;
+            }
+
+            return AlternatingString(string.Concat(encryptedText.Reverse()));
         }
     }
 }
