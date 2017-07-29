@@ -131,16 +131,14 @@ namespace Kata20170729_SimpleEncryptionNo1_AlternatingSplit
             var text2 = encryptedText.Substring(len, encryptedText.Length - len);
 
             var sb = new StringBuilder();
-            for (int i = 0; i < Math.Max(text1.Length, text2.Length); i++)
+            for (int i = 0; i < len; i++)
             {
-                if (i < text2.Length)
-                {
-                    sb.Append(text2[i]);
-                }
-                if (i < text1.Length)
-                {
-                    sb.Append(text1[i]);
-                }
+                sb.Append(text2[i]).Append(text1[i]);
+            }
+
+            if (encryptedText.Length % 2 != 0)
+            {
+                sb.Append(text2.Last());
             }
 
             return sb.ToString();
